@@ -1,1 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap");
+
 @import "tailwindcss";
+
+@layer components {
+    .pt-serif-bold {
+        @apply font-serif font-bold;
+        font-family: "PT Serif", serif;
+        font-weight: 700;
+    }
+}
