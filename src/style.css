@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&family=Inter:wght@300;400;500;600;700&display=swap");
 
 @import "tailwindcss";
 
@@ -7,5 +7,102 @@
         @apply font-serif font-bold;
         font-family: "PT Serif", serif;
         font-weight: 700;
+    }
+
+    /*globalne style*/
+    body {
+        @apply bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900;
+        font-family: "Inter", sans-serif;
+    }
+
+    /* ====== Input & Select Styles ====== */
+    input[type="number"],
+    select {
+        @apply transition-all duration-200 ease-in-out;
+        @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    }
+
+    input[type="number"] {
+        @apply focus:ring-blue-400 focus:ring-offset-blue-900;
+    }
+
+    select {
+        @apply focus:ring-blue-400 focus:ring-offset-blue-900;
+        @apply font-medium text-sm;
+    }
+
+    /* ====== Button Styles ====== */
+    button {
+        @apply transition-all duration-200 ease-in-out;
+        @apply transform hover:scale-105 active:scale-95;
+        @apply shadow-md hover:shadow-lg;
+        @apply font-semibold;
+    }
+
+    button:hover {
+        @apply brightness-110;
+    }
+
+    /* ====== Scroll Styles ====== */
+    ::-webkit-scrollbar {
+        @apply w-2 h-2;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-blue-800;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-blue-600 rounded-full hover:bg-blue-500;
+    }
+
+    /* ====== Operation Cards Animation ====== */
+    @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .operation-card {
+        @apply animate-[slideInUp_0.3s_ease-out];
+        @apply transition-all duration-200 ease-in-out;
+        @apply hover:shadow-lg hover:-translate-y-1;
+    }
+
+    /* ====== Responsive Design ====== */
+    @media (max-width: 1024px) {
+        input[type="number"],
+        select,
+        button {
+            @apply text-sm;
+        }
+    }
+
+    @media (max-width: 768px) {
+        input[type="number"],
+        select,
+        button {
+            @apply text-xs;
+        }
+    }
+}
+
+@layer utilities {
+    /* ====== Custom Utilities ====== */
+    .glass-effect {
+        @apply backdrop-blur-md bg-white/10 border border-white/20;
+    }
+
+    .card-shadow {
+        @apply shadow-[0_8px_16px_rgba(0,0,0,0.3)];
+    }
+
+    .text-gradient {
+        @apply bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent;
     }
 }
