@@ -26,32 +26,33 @@ watch(
 );
 
 function addOperacia() {
-    // check ci cena je definovana a nenulova
+    // overit ci cena je definovana a nenulova
     if (
-        cena.value !== undefined &&
-        cena.value !== null &&
-        cena.value !== 0 &&
-        cena.value !== ""
+        cena.value == undefined &&
+        cena.value == null &&
+        cena.value == 0 &&
+        cena.value == ""
     )
-        if (prijem.value == true) {
-            operacie.value.push({
-                value: cena.value,
-                prijem: true,
-            });
-        } else {
-            operacie.value.push({
-                value: cena.value,
-                prijem: false,
-                kategoria: kategoria.value,
-            });
-        }
+        return;
+    console.log("1");
+    if (prijem.value == true) {
+        operacie.value.push({
+            value: cena.value,
+            prijem: true,
+        });
+    } else {
+        if (kategoria.value == null) return;
+        operacie.value.push({
+            value: cena.value,
+            prijem: false,
+            kategoria: kategoria.value,
+        });
+    }
 }
 </script>
 
 <template>
-    <div
-        class="min-h-screen w-screen flex flex-col bg-linear-to-br from-blue-600 via-blue-500 to-blue-400"
-    >
+    <div class="min-h-screen w-screen flex flex-col bg-white">
         <!-- hlavne zobrazenie -->
         <div class="flex-1 p-4 md:p-6 overflow-y-auto">
             <!-- ked nema operacie, zobrazime prazdny stav -->
@@ -60,7 +61,7 @@ function addOperacia() {
                 v-if="operacie.length === 0"
             >
                 <div
-                    class="text-gray-400 font-light text-4xl md:text-5xl text-center"
+                    class="text-black font-light text-4xl md:text-5xl text-center"
                 >
                     Zatiaľ tu nič nie je
                 </div>
@@ -108,13 +109,11 @@ function addOperacia() {
         </div>
 
         <!-- input -->
-        <div class="bg-blue-700/50 p-4 md:p-6 sticky bottom-0">
+        <div class="bg-white/40 p-4 md:p-6 sticky bottom-0">
             <!-- form -->
-            <div
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 mb-4"
-            >
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-3 mb-4">
                 <input
-                    class="md:col-span-1 lg:col-span-1 rounded-xl bg-blue-700/80 px-4 py-3 text-white placeholder-gray-400 font-medium"
+                    class="rounded-xl bg-blue-700 hover:bg-blue-800 px-4 py-3 text-white placeholder-gray-400 font-medium"
                     v-model.number="cena"
                     type="number"
                     placeholder="Sadzba"
